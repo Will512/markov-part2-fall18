@@ -51,6 +51,7 @@ public class BaseMarkov  implements MarkovInterface<String> {
 	@Override
 	public String getRandomText(int length) {
 		StringBuilder sb = new StringBuilder();
+		//System.out.print(myText);
 		int index = myRandom.nextInt(myText.length() - myOrder + 1);
 
 		String current = myText.substring(index, index + myOrder);
