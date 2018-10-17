@@ -27,14 +27,14 @@ public class MarkovDriver {
 	}
 	
 	public static void main(String[] args) {
-			
+
 		String filename = "data/trump-sou17.txt";
 		//String filename = "data/bush-sou07.txt";
 
 		if (args.length > 0) {
 			filename = args[1];
 		}
-		
+
 		File f = new File(filename);
 		String text = TextSource.textFromFile(f);
 		MarkovInterface<String> standard = new BaseMarkov();
