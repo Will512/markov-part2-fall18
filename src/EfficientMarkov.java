@@ -26,11 +26,11 @@ public class EfficientMarkov extends BaseMarkov {
 	@Override public void setTraining(String text) {
 		myMap.clear();
 		myText = text;
-		int highest = text.length() - myOrder;
-		for(int k = 0; k != highest; k++) {
+		int highest = text.length() - myOrder + 1;
+		for(int k = 0; k < highest; k++) {
 			String key;
 			String follow;
-			if(k == highest) {
+			if(k == highest - 1) {
 				key = text.substring(k);
 				follow = PSEUDO_EOS;
 			}
@@ -38,7 +38,6 @@ public class EfficientMarkov extends BaseMarkov {
 				key = text.substring(k, k+ myOrder);
 				follow = text.substring(k + myOrder, k + myOrder + 1);
 			}
-			
 			if(! myMap.containsKey(key)){
 				ArrayList<String> value = new ArrayList<String>();
 				value.add(follow);

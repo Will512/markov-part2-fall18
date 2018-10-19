@@ -41,7 +41,7 @@ public class MarkovDriver {
 		MarkovInterface<String> efficient = new EfficientMarkov();
 		MarkovInterface<WordGram> wmm = new BaseWordMarkov();
 		MarkovInterface<WordGram> ewm = new EfficientWordMarkov();
-		markovGenerate(wmm,text);
+		markovGenerate(efficient,text);
 	}
 
 	private static void printNicely(String random, int screenWidth) {
