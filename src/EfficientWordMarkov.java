@@ -4,14 +4,14 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 
 public class EfficientWordMarkov extends BaseWordMarkov {
-	Map<WordGram, ArrayList<String>> myMap;
+	private Map<WordGram, ArrayList<String>> myMap;
 	public EfficientWordMarkov(){
 		super();
 		myMap = new HashMap<WordGram, ArrayList<String>>();
 	}
 	public EfficientWordMarkov(int order) {
 		super(order);
-		myMap = new HashMap<WordGram, ArrayList<String>>();
+		 myMap = new HashMap<WordGram, ArrayList<String>>();
 	}
 	/*
 	 * (non-Javadoc)
