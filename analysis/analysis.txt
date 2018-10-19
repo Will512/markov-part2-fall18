@@ -1,7 +1,6 @@
 This is the analysis for Markov Part 2, Fall 2018
+Will Schmidt wrs18
 
-Include your name and net id here. Answer the questions from the assignment 
-that are reproduced below
 
 (1) Determine (from running Benchmark.java) how long it takes for 
 BaseMarkov to generate 2,000, 4,000, 8,000, 16,000, and 32,000 
@@ -11,7 +10,26 @@ The program also generates 4,096 characters using texts that increase in
 size from 496,768 characters to 4,967,680 characters (10 times the number).  
 Do you the timings support the O(NT) analysis for BaseMarkov?
 
+time	source	#chars
+0.221	507914	2000
+0.419	507914	4000
+0.830	507914	8000
+1.642	507914	16000
+3.384	507914	32000
 
+0.443	507914	4096
+0.898	1015828	4096
+1.305	1523742	4096
+1.779	2031656	4096
+2.078	2539570	4096
+2.509	3047484	4096
+2.898	3555398	4096
+3.241	4063312	4096
+3.657	4571226	4096
+4.253	5079140	4096
+
+These timings do support the O(NT) analysis of BaseMarkov since the runtime appears to be linearly
+dependent on both the number of characters and the size of the source text.
 
 (2) Determine (from running Benchmark.java) how long it takes for 
 EfficientMarkov to generate 2,000, 4,000, 8,000, 16,000, and 32,000 
@@ -21,7 +39,35 @@ The program also generates 4,096 characters using texts that increase in
 size from 496,768 characters to 4,967,680 characters (10 times the number).  
 Do you the timings support the O(N+T) analysis for EfficientMarkov?
 
+time	source	#chars
+0.101	507914	2000
+0.094	507914	4000
+0.094	507914	8000
+0.109	507914	16000
+0.104	507914	32000
+
+0.079	507914	4096
+0.178	1015828	4096
+0.268	1523742	4096
+0.413	2031656	4096
+0.601	2539570	4096
+0.649	3047484	4096
+0.816	3555398	4096
+1.227	4063312	4096
+1.342	4571226	4096
+1.421	5079140	4096
+
+These timings don't seem to support the O(N+T) analysis for EfficientMarkov. There could be some
+dependence on T, the number of times getFollows() is called, but it appears to be so small as to be
+insignificant, especially when compared to the times for the O(N) training text reading process.
+
 (3)The tests in the class Benchmark use an order-5 Markov Model. 
 Run tests that you think are appropriate to determine if the order of the 
 Markov Model has a significant impact on the running time for BaseMarkov. 
 Explain your reasoning.
+
+Running Benchmark with an order-20 Markov model, a source size of 5079174 and 32000 characters takes 
+3.025 seconds, which is less than the 3.384 seconds required for the order-5 model. On the other hand,
+running an order-1 Markov model with the same parameters takes 30.062 seconds, much more than the other models.
+This suggests the runtime of a Markov model is inversely related to the order, which makes sense concept-
+ually since a lower order model will have more keys to compute and work with.

@@ -17,15 +17,20 @@ public class EfficientMarkov extends BaseMarkov {
 		super();
 		myMap = new HashMap<String, ArrayList<String>>();
 	}
-
+/*
+ * (non-Javadoc)
+ * Uses the training text to form a hashmap for Markov modelling
+ * @param text is the text to be analyzed and put in a hashmap
+ * @see BaseMarkov#setTraining(java.lang.String)
+ */
 	@Override public void setTraining(String text) {
 		myMap.clear();
 		myText = text;
-		int highest = text.length() - myOrder + 1;
-		for(int k = 0; k < highest; k++) {
+		int highest = text.length() - myOrder;
+		for(int k = 0; k != highest; k++) {
 			String key;
 			String follow;
-			if(k == highest - 1) {
+			if(k == highest) {
 				key = text.substring(k);
 				follow = PSEUDO_EOS;
 			}
@@ -44,6 +49,14 @@ public class EfficientMarkov extends BaseMarkov {
 			}
 		}
 	}
+/*
+ * (non-Javadoc)
+ * Returns the contents of the map for a given string key, throwing an exception if it doesn't exist
+ * @param key is the key which will be accessed in the map
+ * @exception NoSuchElementException when the key is not present in the map
+ * @return is the ArrayList of strings corresponding to the key parameter
+ * @see BaseMarkov#getFollows(java.lang.String)
+ */
 	@Override public ArrayList<String> getFollows(String key) throws NoSuchElementException{
 		if(!(myMap.containsKey(key))) {
 			throw new NoSuchElementException(key+" not found in map");
